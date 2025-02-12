@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Valentine’s Date ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1, h2 {
+            color: #ff3366;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+            background-color: #ff6699;
+            color: white;
+        }
+        .choice-btn:hover {
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank you for being my Valentine! 💖</h1>
+    <h2>What are we going to do?</h2>
+    <button class="choice-btn" onclick="chooseActivity('freaky')">Do something freaky 😏</button>
+    <button class="choice-btn" onclick="chooseActivity('eat')">Eat outside 🍽️</button>
+    
+    <div id="nextStep"></div>
+    
+    <script>
+        function chooseActivity(activity) {
+            let nextStep = document.getElementById("nextStep");
+            nextStep.style.animation = "fadeIn 1s";
+            if (activity === 'freaky') {
+                nextStep.innerHTML = `<h2>Ohh, so you like it spicy? 🌶️🔥</h2>
+                    <h2>Raw or Protected? 😏</h2>
+                    <button class='choice-btn' onclick='chooseProtection("Raw")'>Raw 🍑</button>
+                    <button class='choice-btn' onclick='chooseProtection("Protected")'>Protected 🛡️</button>`;
+            } else {
+                nextStep.innerHTML = `<h2>Where do you want to eat?</h2>
+                    <button class='choice-btn' onclick='chooseRestaurant("Momo's Comfort Food")'>Momo's Comfort Food 🍜</button>
+                    <button class='choice-btn' onclick='chooseRestaurant("Coloseo")'>Coloseo 🍕</button>`;
+            }
+        }
+
+        function chooseProtection(protection) {
+            let nextStep = document.getElementById("nextStep");
+            nextStep.innerHTML = `<h2>Nice choice! Now, pick a position 😏</h2>
+                <button class='choice-btn' onclick='choosePosition("Missionary")'>Missionary 🤍</button>
+                <button class='choice-btn' onclick='choosePosition("Doggy")'>Doggy 🐶</button>
+                <button class='choice-btn' onclick='choosePosition("Cowgirl")'>Cowgirl 🤠</button>`;
+        }
+
+        function choosePosition(position) {
+            let nextStep = document.getElementById("nextStep");
+            nextStep.innerHTML = `<h2>Spicy choice! How many rounds? 🔥</h2>
+                <button class='choice-btn' onclick='finalStep("1")'>1 Round 🔥</button>
+                <button class='choice-btn' onclick='finalStep("2-3")'>2-3 Rounds 😏</button>
+                <button class='choice-btn' onclick='finalStep("Endless")'>Endless 💦</button>`;
+        }
+
+        function finalStep(rounds) {
+            setTimeout(() => {
+                document.getElementById("nextStep").innerHTML = `<h2>Damn, you're wild! 😈🔥</h2>
+                    <p>Message me what your answers were! ❤️</p>`;
+            }, 1500);
+        }
+
+        function chooseRestaurant(restaurant) {
+            let nextStep = document.getElementById("nextStep");
+            nextStep.innerHTML = `<h2>What time? ⏰</h2>
+                <button class='choice-btn' onclick='chooseTime("Lunch", "${restaurant}")'>Lunch</button>
+                <button class='choice-btn' onclick='chooseTime("Dinner", "${restaurant}")'>Dinner</button>`;
+        }
+        
+        function chooseTime(time, restaurant) {
+            setTimeout(() => {
+                document.getElementById("nextStep").innerHTML = `<h2>Thank you! 💕 See you at ${restaurant} for ${time}! 😘</h2><p>Message me what your answers were! ❤️</p>`;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
